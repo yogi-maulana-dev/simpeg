@@ -13,7 +13,7 @@ return new class extends Migration
     {
       Schema::create('pegawais', function (Blueprint $table) {
     $table->id('id_pegawai');
-    $table->string('nip')->unique();
+  $table->string('nip', 30)->unique();
     $table->string('nama');
     $table->date('tanggal_lahir')->nullable();
     $table->enum('jenis_kelamin', ['L', 'P'])->nullable();
@@ -27,6 +27,8 @@ return new class extends Migration
     $table->foreignId('id_golongan')->constrained('golongans', 'id_golongan');
 
     $table->date('tanggal_masuk')->nullable();
+
+      $table->softDeletes();
 
     $table->timestamps();
 });
